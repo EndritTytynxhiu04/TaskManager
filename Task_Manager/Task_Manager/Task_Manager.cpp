@@ -11,8 +11,23 @@ struct Task {
 };
 
 vector<Task> tasks;
-int nextId = 1;
 
+
+void deleteTask() {
+    int id;
+    cout << "Enter task ID to delete: ";
+    cin >> id;
+    for (auto it = tasks.begin(); it != tasks.end(); ++it) {
+        if (it->id == id) {
+            tasks.erase(it);
+            cout << "Task deleted!\n";
+            return;
+        }
+    }
+    cout << "Task not found!\n";
+
+int nextId = 1;
+}
 void addTask() {
     cin.ignore();
     Task task = { nextId++, "", false };
