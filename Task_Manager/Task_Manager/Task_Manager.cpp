@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <algorithm>  
+#include <algorithm> 
 #include <string>     
 
 using namespace std;
@@ -53,6 +53,21 @@ void listTasks() {
     }
 }
 
+void markTask() {
+    int id;
+    cout << "Enter task ID to mark complete: ";
+    cin >> id;
+    for (auto& task : tasks) {
+        if (task.id == id) {
+            task.completed = true;
+            saveTasks();
+            cout << "Task marked as completed!\n";
+            return;
+        }
+    }
+    cout << "Task not found!\n";
+}
+
 void deleteTask() {
     int id;
     cout << "Enter task ID to delete: ";
@@ -72,13 +87,14 @@ int main() {
     loadTasks();
     int choice;
     while (true) {
-        cout << "\nTask Manager:\n1. Add Task\n2. List Tasks\n3 Delete Task\n4. Exit\nChoose an option: ";
+        cout << "\nTask Manager:\n1. Add Task\n2. List Tasks\n3. Mark Task as Completed\n4. Delete Task\n5. Exit\nChoose an option: ";
         cin >> choice;
         switch (choice) {
         case 1: addTask(); break;
         case 2: listTasks(); break;
-        case 3: deleteTask(); break;
-        case 4: return 0;
+        case 3: markTask(); break;
+        case 4: deleteTask(); break;
+        case 5: return 0;
         default: cout << "Invalid option!\n";
         }
     }
